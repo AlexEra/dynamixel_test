@@ -5,7 +5,7 @@ from serialsupport import *
 if __name__ == '__main__':
     while True:
         print("available ports: ", *serial_ports())
-        port = input("input dynamixel port, or print <<e>> for shutdown: ")
+        port = input("input dynamixel port, or print <<e>> to shutdown: ")
         if port == 'e':
             print("quit")
             quit()
