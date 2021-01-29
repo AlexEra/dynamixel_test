@@ -16,8 +16,6 @@ if __name__ == '__main__':
     addresses = [24, 30, 36]  # Dynamixel MX-28AR
     dxl = Dynamixel(addresses, 1, 10, port, 830, 3210, 20)
 
-    packetHandler = PacketHandler(1)
-
     if dxl.open_port():
         dxl.enable_dynamixel_torque()
         dxl.dxl_id = 6
