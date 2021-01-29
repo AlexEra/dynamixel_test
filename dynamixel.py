@@ -90,12 +90,12 @@ class Dynamixel:
     def close_dxl_port(self):
         self.portHandler.closePort()
 
-    def change_id(self, id):
+    def change_id(self, address, new_id):
         """Change Dynamixel id"""
-        dxl_comm_result, dxl_error = self._send_one_byte(3, id)
+        dxl_comm_result, dxl_error = self._send_one_byte(address, new_id)
         if dxl_comm_result != COMM_SUCCESS:
             print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
         elif dxl_error != 0:
             print("%s" % self.packetHandler.getRxPacketError(dxl_error))
         else:
-            print("Dynamixel#%d has been change id to %d" % self.dxl_id % id)
+            print("Dynamixel#%d has been change id to %d" % self.dxl_id % new_id)
