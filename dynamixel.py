@@ -25,24 +25,24 @@ else:
 class Dynamixel:
     def __init__(self, addresses, protocol, dxl_id, device_name, min_pos, max_pos, threshold, bd=57600):
         # Control table address
-        self.address_mx_torque_enable = addresses[0]  # 64, Control table address is different in Dynamixel model
-        self.address_mx_goal_position = addresses[1]  # 116
-        self.address_mx_pos = addresses[2]  # 132
+        self.address_mx_torque_enable = addresses[0]  # Control table address is different in Dynamixel model
+        self.address_mx_goal_position = addresses[1]
+        self.address_mx_pos = addresses[2]
 
         # Protocol version
-        self.protocol_ver = protocol  # 1.0, See which protocol version is used in the Dynamixel
+        self.protocol_ver = protocol  # See which protocol version is used in the Dynamixel
 
         # Default setting
-        self.dxl_id = dxl_id  # 1, Dynamixel ID
+        self.dxl_id = dxl_id  # Dynamixel ID
         self.baud_rate = bd  # Dynamixel default baudrate : 57600
         self.device_name = device_name  # Check which port is being used on your controller
         # ex) Windows: "COM1"   Linux: "/dev/ttyUSB0" Mac: "/dev/tty.usbserial-*"
 
         self.torque_enable = 1  # Value for enabling the torque
         self.torque_disable = 0  # Value for disabling the torque
-        self.dxl_min_pos = min_pos  # 100, Dynamixel will rotate between this value
-        self.dxl_max_pos = max_pos  # 4000, and this value
-        self.dxl_threshold = threshold  # 20, Dynamixel moving status threshold
+        self.dxl_min_pos = min_pos  # Dynamixel will rotate between this value
+        self.dxl_max_pos = max_pos  # and this value
+        self.dxl_threshold = threshold  # Dynamixel moving status threshold
 
         self.portHandler = PortHandler(self.device_name)  # get methods and members of Linux or Windows ports
 
