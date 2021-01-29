@@ -1,2 +1,2 @@
 # dynamixel_test
-test for dynamixel control with Python 
+tests for dynamixel control with Python 
