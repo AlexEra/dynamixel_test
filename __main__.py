@@ -8,20 +8,20 @@ if __name__ == '__main__':
         port = input("input dynamixel port, or print <<e>> to shutdown: ")
         if port == 'e':
             print("quit")
-            quit()
+            break
 
-        addresses = [64, 116, 132]
-        dxl = Dynamixel(addresses, 1, 1, port, 100, 4000, 10)
+        addresses = [24, 30, 36]  # [64, 116, 132], Dynamixel MX-28AR
+        dxl = Dynamixel(addresses, 1, 6, port, 830, 3210, 20)
 
         if dxl.open_port():
             dxl.enable_dynamixel_torque()
-
             while True:
-                print("Press any key to continue! (or press ESC to quit!)")
-                if getch() == chr(0x1b):
+                if input("Press any key to continue! (or <<e>> to quit!)") == 'e':
                     break
 
-                dxl_goal_position = 4000
+                dxl_goal_position = int(input("\ninput goal position: "))
+                if not (830 <= dxl_goal_position <= 3210):
+                    break
                 dxl.move_position(dxl_goal_position)
 
                 while True:
@@ -29,5 +29,5 @@ if __name__ == '__main__':
                     if not (abs(dxl_goal_position - dxl_present_position) > dxl.dxl_threshold):
                         break
 
-                dxl.torque_disable()
-                dxl.close_dxl_port()
+                dxl.disable_dynamixel_torque()
+    dxl.close_dxl_port()

@@ -51,6 +51,7 @@ class Dynamixel:
     def open_port(self):
         try:
             self.portHandler.openPort()
+            print("Connected")
         except serial.SerialException:
             print("Failed to open the port")
             return False
@@ -75,8 +76,8 @@ class Dynamixel:
     def read_position(self):
         """Read Dynamixel present position"""
         dxl_present_position, dxl_comm_result, dxl_error = self.packetHandler.read4ByteTxRx(self.portHandler,
-                                                                                             self.dxl_id,
-                                                                                             self.address_mx_pos)
+                                                                                            self.dxl_id,
+                                                                                            self.address_mx_pos)
         if dxl_comm_result != COMM_SUCCESS:
             print(self.packetHandler.getTxRxResult(dxl_comm_result))
         elif dxl_error != 0:
